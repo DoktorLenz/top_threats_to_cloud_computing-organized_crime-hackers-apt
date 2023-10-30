@@ -9,6 +9,8 @@
 \usepackage{xcolor}
 \usepackage{balance}
 
+\usepackage[nohyperlinks, printonlyused, nolist]{acronym}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc} % Trennen von Wörtern mit Umlauten
 \usepackage{ngerman} % Damit z.B. "Literatur" statt "References" da steht
@@ -17,6 +19,11 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
+
+\begin{acronym}
+    \acro{apt}[APT]{Advanced Persistent Threat}
+\end{acronym}
+
 
 \title{Conference Paper Title
 }
@@ -31,9 +38,14 @@
 \maketitle
 
 \begin{abstract}
-    This document is a model and instructions for \LaTeX.
-    This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes,
-    or Math in Paper Title or Abstract.
+    Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes Maß an Fachwissen und erhebliche Ressourcen verfügen, die es Ermöglichen mehrere Angriffsvektoren zu nutzen.
+    Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
+    Zu diesen Zielen gehören u.\nobreakspace a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
+    Die geschätzten jährlichen Kosten von Cyberkriminalität sollen laut Statista im Jahr 2023 auf 8,15 Billionen US-Dollar belaufen und bis 2028 um 69,94\% auf 13.82 Billionen US-Dollar steigen \cite{Statista2023}.
+    Deshalb ist es für Organisationen und Firmen unerlässlich sich gegen \acp{apt} und anderen Akteuren zu schützen.
+
+    Paper soll anhand der APT XX zeigen, wie diese Vorgehen, welche Techniken verwendet werden und welche Ziele APTs verfolgen.
+    Im Schlussteil werden die wichtigsten Maßnahmen aufgezeigt oder eine raffinierte Maßnahme im Detail erklärt
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -60,6 +72,8 @@
 
 \subsection{Some Common Mistakes}
 \cite{Cole2013}
+\cite{NIST2011}
+\cite{Statista2023}
 \subsection{Authors and Affiliations}
 
 
