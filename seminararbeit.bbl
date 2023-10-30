@@ -21,9 +21,8 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{alma991021857289706535}
-M.~Young, \emph{\BIBforeignlanguage{eng}{The technical writer's handbook :
-  writing with style and clarity}}.\hskip 1em plus 0.5em minus 0.4em\relax
-  Sausalito, CA: University Science Books, 2002.
+\bibitem{IEEEexample:article_typical}
+S.~Zhang, C.~Zhu, J.~K.~O. Sin, and P.~K.~T. Mok, ``A novel ultrathin elevated
+  channel low-temperature poly-{Si} {TFT},'' vol.~20, pp. 569--571, Nov. 1999.
 
 \end{thebibliography}
