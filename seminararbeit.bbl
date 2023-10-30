@@ -26,22 +26,4 @@ M.~Young, \emph{\BIBforeignlanguage{eng}{The technical writer's handbook :
   writing with style and clarity}}.\hskip 1em plus 0.5em minus 0.4em\relax
   Sausalito, CA: University Science Books, 2002.
 
-\bibitem{IEEEexample:book}
-S.~M. Metev and V.~P. Veiko, \emph{Laser Assisted Microtechnology}, 2nd~ed.,
-  R.~M. Osgood, Jr., Ed.\hskip 1em plus 0.5em minus 0.4em\relax Berlin,
-  Germany: Springer-Verlag, 1998.
-
-\bibitem{IEEEexample:inbook}
-H.~E. Rose, \emph{A Course in Number Theory}.\hskip 1em plus 0.5em minus
-  0.4em\relax New York, NY: Oxford Univ. Press, 1988, ch.~3.
-
-\bibitem{IEEEexample:incollectionwithseries}
-J.~B. Anderson and K.~Tepe, ``Properties of the tailbiting {BCJR} decoder,'' in
-  \emph{Codes, Systems and Graphical Models}, ser. {IMA} Volumes in Mathematics
-  and Its Applications.\hskip 1em plus 0.5em minus 0.4em\relax New York:
-  Springer-Verlag, 2000.
-
-\bibitem{IEEEexample:unpublished}
-T.~J. Ott and N.~Aggarwal, ``{TCP} over {ATM}: {ABR} or {UBR},'' unpublished.
-
 \end{thebibliography}
