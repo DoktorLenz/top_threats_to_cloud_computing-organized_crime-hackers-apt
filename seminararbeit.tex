@@ -25,7 +25,7 @@
 \end{acronym}
 
 
-\title{Conference Paper Title
+\title{Methoden und Techniken von \aclp*{apt} am Beispiel des Solarwinds Compromise
 }
 
 \author{\IEEEauthorblockN{Maria Mustermann}
@@ -38,51 +38,143 @@
 \maketitle
 
 \begin{abstract}
-    Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes Maß an Fachwissen und erhebliche Ressourcen verfügen, die es Ermöglichen mehrere Angriffsvektoren zu nutzen.
-    Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
-    Zu diesen Zielen gehören u.\nobreakspace a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
-    Die geschätzten jährlichen Kosten von Cyberkriminalität sollen laut Statista im Jahr 2023 auf 8,15 Billionen US-Dollar belaufen und bis 2028 um 69,94\% auf 13.82 Billionen US-Dollar steigen \cite{Statista2023}.
-    Deshalb ist es für Organisationen und Firmen unerlässlich sich gegen \acp{apt} und anderen Akteuren zu schützen.
 
-    Paper soll anhand der APT XX zeigen, wie diese Vorgehen, welche Techniken verwendet werden und welche Ziele APTs verfolgen.
-    Im Schlussteil werden die wichtigsten Maßnahmen aufgezeigt oder eine raffinierte Maßnahme im Detail erklärt
+    Am des Solarwinds Compromise der \acs*{apt} 29 wird gezeigt, welche Methoden und Techniken durch \acsp*{apt} angewandt werden.
+    ?? Deshalb ist es für Organisationen und Firmen unerlässlich sich gegen böswillige Akteure zu schützen.
+
+    Paper soll anhand des Solarwinds Compromise der \ac{apt} 29 zeigen, wie diese Vorgehen, welche Techniken verwendet werden und welche Ziele APTs verfolgen.
+    ?? Im Schlussteil werden die wichtigsten Maßnahmen aufgezeigt oder eine raffinierte Maßnahme im Detail erklärt
 \end{abstract}
 
 \begin{IEEEkeywords}
-    component, formatting, style, styling, insert
+    \ac{apt}, Solarwinds, Cybersecurity, Machine Learning, Artificial Intelligence
 \end{IEEEkeywords}
 
-\section{Introduction}
-
-\section{Ease of Use}
-
-\subsection{Maintaining the Integrity of the Specifications}
-
-\section{Prepare Your Paper Before Styling}
-
-\subsection{Abbreviations and Acronyms}
-
-\subsection{Units}
+\section{Einführung}
+Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes Maß an Fachwissen und erhebliche Ressourcen verfügen, die es Ermöglichen mehrere Angriffsvektoren zu nutzen.
+Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
+Zu diesen Zielen gehören u.~a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
+Die geschätzten jährlichen Kosten von Cyberkriminalität sollen laut Statista im Jahr 2023 auf 8,15 Billionen US-Dollar belaufen und bis 2028 um 69,94\% auf 13.82 Billionen US-Dollar steigen \cite{Statista2023}.
 
 
-\subsection{Equations}
+\subsection{Organisierte Kriminalität, Hacker und \aclp*{apt}}
+Abgrenzung von \ac{apt} zu anderen Formen der Cyberkriminalität ist in Abb.~\ref{fig.destinction} dargestellt.
+\begin{figure}[htbp]
+    \centerline{\includegraphics[scale=0.8]{figures/Destinction between targeted attacks, activity by APTs, and cyber-espionage.png}}
+    \caption{Unterscheidung zwischen gezielten Angriffen, Aktivitätes von \acp{apt} und Cyberspionage \protect\cite[S.~6]{Steffens2020}}
+    \label{fig.destinction}
+\end{figure}
+\subsection{Solarwinds Compromise}
 
-\subsection{\LaTeX-Specific Advice}
+\section{Vorgehensweise von \aclp{apt}}
+Die Techniken der \acp{apt} werden immer komplexer und vielfältiger und bestehen aus vielschichtigen und zeitaufwändigen Prozessen \cite[S.~7f]{Steffens2020}.
+Um sie besser zu verstehen, werden die verschiedenen Teile eines Anriffs in eine \textit{killchain} sortiert \cite[S.~8]{Steffens2020}, siehe Abb.~\ref{fig.killchain}.
+\begin{figure}[htbp]
+    \centerline{\includegraphics[scale=0.8]{figures/killchain.png}}
+    \caption{Killchain: Idealisiertes Modell der Stufen eines \ac{apt}-Angriffs \cite[S.~8]{Steffens2020}}
+    \label{fig.killchain}
+\end{figure}
+Es gibt weitere Killchain-Modelle, u.~a. von Lockheed Martin \cite{LockheedMartin}, welche einfachheitshalber nicht weiter in betracht genommen wurden.
+\subsection{Aufkärung}
+Das Ziel des ersten Schritts ist es nicht nur Information über das Ziel zu finden, sondern auch das Ziel festzulegen.
+Wie und warum Ziele ausgewählt werden lässt sich schwer bis nicht feststellen.
+Meist wird angenommen, dass \acp{apt} einen Auftrag durch Kunden bekommen, beispielsweise durch Geheimdienste, und danach ihre Ziele suchen.
+Nachdem das Ziel feststeht beginnt die weitere Aufklärung.
+Vgl. zu diesem Abschnitt Steffens \cite[S.~10-13]{Steffens2020}.
+In der Regel werden öffentlich zugängliche Informationen über ein Ziel gesammelt, um dessen Arbeitsweise besser zu verstehen und potenzielle Angriffsvektoren zu identifizieren \cite{Cole2013}.
+MITRE \cite{MITREReconnaissance} listet zehn Techniken auf, mit deren Hilfe Informationen über das Ziel gefunden werden können:
+\begin{itemize}
+    \item \textbf{Active Scanning} - Direkte Interaktion mit der Infrastruktur des Ziels (IP-Adressblöcke finden, Schwachstellenscanns, Wortlistsuche)
+    \item \textbf{Gather Victim Host Informatiomn} - Harware- und Softwareinformation über das Zielsystem finden (Betriebssystem, Konfigurationen, Firmware, usw.)
+    \item \textbf{Gather Victim Identity Information} - Informationen über Mitarbeiter (Daten von Personen, E-Mail Adressen, Zugangsdaten)
+    \item \textbf{Gather Victim Network Information} - Grundlegende Informationen über das Netzwerk (IP-Adressen, DNS- \& Domain-Informationen, Netzwerktopologie, usw.)
+    \item \textbf{Gather Victim Org Information} - Informationen über das Unternehmen sammeln, die für weiter Schritte genutzt werden können (Geschäftsbeziehungen, Personalstruktur und -hierarchie, usw.)
+    \item \textbf{Phishing for Information} - Erlangen von vertraulichen Informationen mithilfe von u.~a. Social-Engineering Taktiken (Telefonate, E-Mails, usw.)
+    \item \textbf{Search Closed Sources} - Informationen über das Ziel kaufen (Dark-Web Schwarzmärkte, usw.)
+    \item \textbf{Search Open Technical Databases} - Technische Informationen über das Ziel in frei verfügbaren Online-Datenbanken finden (WHOIS, DNS, CDNs, usw.)
+    \item \textbf{Search Open Websites/Domains} - Informationen über Suchmaschienen, Social-Media oder Coderepositorien finden.
+    \item \textbf{Search Victim-Owned Websites} - Durchsuchen von Webseiten nach Informationen, die dem Ziel gehören (E-Mail Adressen, Mitarbeitername, usw.)
+\end{itemize}
+Viele der Techniken werden kombiniert, um am Ende das eigentliche Ziel zu erreichen.
+Beispielsweise werden auf der Webseite des Ziels wichtigen Mitarbeitern gesucht, weitere Informationen über Social-Media gewonnen, um anschließend vertrauliche Informationen über das Ziel mittels Social-Engineering Taktiken zu gewinnen.
 
+?? Solarwinds Compromise
 
-\subsection{Some Common Mistakes}
-\cite{Cole2013}
-\cite{NIST2011}
-\cite{Statista2023}
-\subsection{Authors and Affiliations}
+\subsection{Auslieferung}
+Die Auslieferung ist sehr verbunden mit der Aufklärung.
+Häufig wird für eine gewählte Auslieferungsstrategie entsprechende Aufklärung durchgeführt.
+??
+Vgl. zu diesem Abschnitt Steffens \cite[S.~10-13]{Steffens2020}.
+MITRE \cite{MITREInitialAccess} bezeichnet diesen Schritt als initialen Zugriff und unterscheidet zwischen zehn Techniken:
+\begin{itemize}
+    \item \textbf{Content Injection} - Nutzen von bereits kompromittierten Datenübertragungskanälen.
+    \item \textbf{Drive-by Compromise} - Ziel wird aktiv zu bösartigen Nutzdaten auf einer kompromittierten Webseite gelockt, z.B. Abgreifen von Anwendungszugriffstoken.
+    \item \textbf{Exploit Public-Facing Application} - Ausnutzen einer Schwachstelle eines Systems.
+    \item \textbf{External Remote Services} - Nutzen von unzureichend abgesicherten Remote-Diensten, wie VPNs.
+    \item \textbf{Harware Additions} - Einbringen neuer Hardwaer in ein System oder Netzwerk, z.B. Wechseldatenträger.
+    \item \textbf{Phishing} - Versenden von Phishing-Nachrichten, um einen Zugang zum System des Ziels zu erhalten.
+    \item \textbf{Replication Through Removable Media} - Eindringen in abgetrennte Netzwerke, z.B. mittels Wechselmedien in Kombination mit Autorun-Funktionen
+    \item \textbf{Supply Chain Compromise} - Einschleusen von bösartigem Code durch Auslieferungsmechanismen von Anwendungen.
+    \item \textbf{Trusted Relationship} - Ausnutzen von vertrauenswürdigen Dritten, um Zugang zu einem Netzwerk zu erhalten.
+    \item \textbf{Valid Accounts} - Nutzen von Anmeldeinformationen bestehender Konten (VPNs, Outlook, Remote-Desktop, ...)
+\end{itemize}
 
+?? Solarwinds compromis supply chain compromise
 
-\subsection{Identify the Headings}
+\subsection{Installation}
+??
+MITRE \cite{MITREEnterpriseTactics} unterscheidet in diesem Punkt zwischen Taktiken für die Ausführung von schadhaftem Code, \textit{Execution}, und Taktiken, um den Zugriff auf längere Zeit zu sichern \cite{MITREEnterpriseTactics}.
+Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MITREExecution} folgende:
+\begin{itemize}
+    \item \textbf{Cloud Administration Command} - Missbrauchen von Cloud-Verwaltungsdiensten, wie AWS Systems Manager und Azure Runcommand.
+    \item \textbf{Command and Scripting Interpreter} - Befehls- und Skriptinterpreter, wie Unix-Shell und PowerShell, werden zum ausführen von schadhafem Code verwendet.
+    \item \textbf{Container Administration Command} - Über Containerverwaltungsdienste kann schadhafter Code innerhalb eines Containers ausgeführt werden.
+    \item \textbf{Deploy Container} - Einsetzen von schadhaften Containern, um beispielsweise Prozesse auszuführen die Malware ausführen oder herunterladen.
+    \item \textbf{Exploitation for Client Execution} - Ausnutzern von Software-Schwachstellen in Client-Anwendungen, um Code auszuführen.
+    \item \textbf{Inter-Process Communication} - Manipulieren von prozessübergreifender Kommunikation, um Befehle oder Code auszuführen.
+    \item \textbf{Native API} - Verwenden von nativen Betriebssystemschnittstellen.
+    \item \textbf{Scheduled Task/Job} - Ermöglicht bösartigen Code erstmalig oder wiederholt auszuführen, indem Fuktionen zur Aufgabenplanung missbraucht werden.
+    \item \textbf{Serverless Execution} - Missbrauchen von Serverless Computing, Integrations- und Automatisierungsdiensten, um Code in Cloudumgebungen auszuführen.
+    \item \textbf{Shared Modules} - Schadhafter Code kann über gemeinsame Module (z.B. DLLs) ausgeführt werden.
+    \item \textbf{Software Deployment Tools} - Bei Zugang zu installierten drittanbieter Softwares für Systemadministration, -monitoring und Softwarebereitstellung kann beliebe Malware in großen Teilen des Netzwerks installiert werden. Dadurch wird auch die Verbreitung im Netzwerk erzielt.
+    \item \textbf{System Services} - Verwenden von Systemdiensten oder Daemons zur Ausführung von Code. Kann bereits zum erreichen von Persistenz verwendet werden.
+    \item \textbf{User Execution} - Bösartiger Code wird hierbei durch einen Benutzer ausgeführt, der durch Social Engineering dazu gebracht wurde.
+    \item \textbf{Windows Management Instrumentation} - Ausnutzen der Windows Management Insturmentation, um Befehle auszuführen.
+\end{itemize}
+Die größte Teil der genannten Taktiken ermöglichen es, schadhaften Code einmalig auszuführen, jedoch werden diese Prozesse nach neustart eines Systems beendet.
+Um den Zugang über Neustarts hinweg zu sichern, werden Taktiken zu persistierung eingesetz \cite{MITREPersistence}.
+Dazu listet MITRE \cite{MITREPersistence} folgende Taktiken auf:
+\begin{itemize}
+    \item \textbf{Account Manipulation} -
+    \item \textbf{BITS Jobs} -
+    \item \textbf{Boot or Logon Autostart Execution} -
+    \item \textbf{Boot or Logon Initialization Scripts} -
+    \item \textbf{Brwoser Extensions} -
+    \item \textbf{Compromise Client Software Binary} -
+    \item \textbf{Create Account} -
+    \item \textbf{Create or Modify System Process} -
+    \item \textbf{Event Triggered Execution} -
+    \item \textbf{External Remote Services} -
+    \item \textbf{Hijack Execution Flow} -
+    \item \textbf{Implant Internal Image} -
+    \item \textbf{Modify Authentication Process} -
+    \item \textbf{Office Application Startup} -
+    \item \textbf{Power Settings} -
+    \item \textbf{Pre-OS Boot} -
+    \item \textbf{Scheduled Task/Job} -
+    \item \textbf{Server Software Component} -
+    \item \textbf{Traffic Signaling} -
+    \item \textbf{Valid Accounts} -
+\end{itemize}
 
-\subsection{Figures and Tables}
-\paragraph{Positioning Figures and Tables}
+\subsection{Verbreitung}
+\subsection{Exfiltration}
+\subsection{Beweise löschen}
 
-
+\section{Verteidigung gegen \aclp{apt}}
+\subsection{Threat Hunting}
+\subsection{Visual Analytics with the MASFAD framework}
+\section{Fazit ??}
 
 \section*{Acknowledgment}
 
