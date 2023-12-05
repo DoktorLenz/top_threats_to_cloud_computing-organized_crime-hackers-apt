@@ -108,12 +108,12 @@ Vgl. zu diesem Abschnitt Steffens \cite[S.~10-13]{Steffens2020}.
 MITRE \cite{MITREInitialAccess} bezeichnet diesen Schritt als initialen Zugriff und unterscheidet zwischen zehn Techniken:
 \begin{itemize}
     \item \textbf{Content Injection} - Nutzen von bereits kompromittierten Datenübertragungskanälen.
-    \item \textbf{Drive-by Compromise} - Ziel wird aktiv zu bösartigen Nutzdaten auf einer kompromittierten Webseite gelockt, z.B. Abgreifen von Anwendungszugriffstoken.
+    \item \textbf{Drive-by Compromise} - Ziel wird aktiv zu bösartigen Nutzdaten auf einer kompromittierten Webseite gelockt, z.~B. Abgreifen von Anwendungszugriffstoken.
     \item \textbf{Exploit Public-Facing Application} - Ausnutzen einer Schwachstelle eines Systems.
     \item \textbf{External Remote Services} - Nutzen von unzureichend abgesicherten Remote-Diensten, wie VPNs.
-    \item \textbf{Harware Additions} - Einbringen neuer Hardwaer in ein System oder Netzwerk, z.B. Wechseldatenträger.
+    \item \textbf{Harware Additions} - Einbringen neuer Hardwaer in ein System oder Netzwerk, z.~B. Wechseldatenträger.
     \item \textbf{Phishing} - Versenden von Phishing-Nachrichten, um einen Zugang zum System des Ziels zu erhalten.
-    \item \textbf{Replication Through Removable Media} - Eindringen in abgetrennte Netzwerke, z.B. mittels Wechselmedien in Kombination mit Autorun-Funktionen
+    \item \textbf{Replication Through Removable Media} - Eindringen in abgetrennte Netzwerke, z.~B. mittels Wechselmedien in Kombination mit Autorun-Funktionen
     \item \textbf{Supply Chain Compromise} - Einschleusen von bösartigem Code durch Auslieferungsmechanismen von Anwendungen.
     \item \textbf{Trusted Relationship} - Ausnutzen von vertrauenswürdigen Dritten, um Zugang zu einem Netzwerk zu erhalten.
     \item \textbf{Valid Accounts} - Nutzen von Anmeldeinformationen bestehender Konten (VPNs, Outlook, Remote-Desktop, ...)
@@ -124,7 +124,7 @@ MITRE \cite{MITREInitialAccess} bezeichnet diesen Schritt als initialen Zugriff 
 \subsection{Installation}
 ??
 MITRE \cite{MITREEnterpriseTactics} unterscheidet in diesem Punkt zwischen Taktiken für die Ausführung von schadhaftem Code, \textit{Execution}, und Taktiken, um den Zugriff auf längere Zeit zu sichern \cite{MITREEnterpriseTactics}.
-Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MITREExecution} folgende:
+Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MITREExecution} folgende auf:
 \begin{itemize}
     \item \textbf{Cloud Administration Command} - Missbrauchen von Cloud-Verwaltungsdiensten, wie AWS Systems Manager und Azure Runcommand.
     \item \textbf{Command and Scripting Interpreter} - Befehls- und Skriptinterpreter, wie Unix-Shell und PowerShell, werden zum ausführen von schadhafem Code verwendet.
@@ -135,7 +135,7 @@ Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MIT
     \item \textbf{Native API} - Verwenden von nativen Betriebssystemschnittstellen.
     \item \textbf{Scheduled Task/Job} - Ermöglicht bösartigen Code erstmalig oder wiederholt auszuführen, indem Fuktionen zur Aufgabenplanung missbraucht werden.
     \item \textbf{Serverless Execution} - Missbrauchen von Serverless Computing, Integrations- und Automatisierungsdiensten, um Code in Cloudumgebungen auszuführen.
-    \item \textbf{Shared Modules} - Schadhafter Code kann über gemeinsame Module (z.B. DLLs) ausgeführt werden.
+    \item \textbf{Shared Modules} - Schadhafter Code kann über gemeinsame Module (z.~B. DLLs) ausgeführt werden.
     \item \textbf{Software Deployment Tools} - Bei Zugang zu installierten drittanbieter Softwares für Systemadministration, -monitoring und Softwarebereitstellung kann beliebe Malware in großen Teilen des Netzwerks installiert werden. Dadurch wird auch die Verbreitung im Netzwerk erzielt.
     \item \textbf{System Services} - Verwenden von Systemdiensten oder Daemons zur Ausführung von Code. Kann bereits zum erreichen von Persistenz verwendet werden.
     \item \textbf{User Execution} - Bösartiger Code wird hierbei durch einen Benutzer ausgeführt, der durch Social Engineering dazu gebracht wurde.
@@ -143,31 +143,44 @@ Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MIT
 \end{itemize}
 Die größte Teil der genannten Taktiken ermöglichen es, schadhaften Code einmalig auszuführen, jedoch werden diese Prozesse nach neustart eines Systems beendet.
 Um den Zugang über Neustarts hinweg zu sichern, werden Taktiken zu persistierung eingesetz \cite{MITREPersistence}.
-Dazu listet MITRE \cite{MITREPersistence} folgende Taktiken auf:
+Dazu gehören nach MITRE \cite{MITREPersistence} folgende Taktiken:
 \begin{itemize}
-    \item \textbf{Account Manipulation} -
-    \item \textbf{BITS Jobs} -
-    \item \textbf{Boot or Logon Autostart Execution} -
-    \item \textbf{Boot or Logon Initialization Scripts} -
-    \item \textbf{Brwoser Extensions} -
-    \item \textbf{Compromise Client Software Binary} -
-    \item \textbf{Create Account} -
-    \item \textbf{Create or Modify System Process} -
-    \item \textbf{Event Triggered Execution} -
-    \item \textbf{External Remote Services} -
-    \item \textbf{Hijack Execution Flow} -
-    \item \textbf{Implant Internal Image} -
-    \item \textbf{Modify Authentication Process} -
-    \item \textbf{Office Application Startup} -
-    \item \textbf{Power Settings} -
-    \item \textbf{Pre-OS Boot} -
-    \item \textbf{Scheduled Task/Job} -
-    \item \textbf{Server Software Component} -
-    \item \textbf{Traffic Signaling} -
-    \item \textbf{Valid Accounts} -
+    \item \textbf{Account Manipulation} - Aktionen um den Zugriff auf ein Konto aufrechtzuerhalten. z.~B. durch Ändern von Anmeldedaten.
+    \item \textbf{BITS Jobs} - Windows Brackground Intelligent Transfer Services (BITS) können genutzt werden um Malware als Hintergrundaufgabe dauerhaft auszuführen.
+    \item \textbf{Boot or Logon Autostart Execution} - Systemeinstellungen konfigurieren, damit ein Programm bei Systemstart oder Anmeldung automatisch ausgeführt wird.
+    \item \textbf{Boot or Logon Initialization Scripts} - Verwendung von Skripten die automatisch beim Booten oder bei der Anmeldung auseführt werden.
+    \item \textbf{Browser Extensions} - Missbrauchen von Browser-Erweiterungen, um sich dauerhaften Zugang zu verschaffen.
+    \item \textbf{Compromise Client Software Binary} - Schadhaften Code in Client-Software-Binärdateien einschleusen.
+    \item \textbf{Create Account} - Eigenes Konto für den Systemzugang erstellen.
+    \item \textbf{Create or Modify System Process} - Erstellen oder Ändern von Prozessen auf Systemebene (z.~B. Windows-Dienste). Diese werden beim Start des Betriebssystems hochgefahren.
+    \item \textbf{Event Triggered Execution} - Mit Hilfe von Systemmechanismen können bei bestimmten Ereignissen Prozesse ausgeführt werden. Besonders in Cloud-Umgebungen, werden Cloud-Ereignisse überwacht und bei entsprechende Ereignissen Funktionen oder Dienste ausgeführt.
+    \item \textbf{External Remote Services} - Über Remote-Dienste kann der Zugriff auf ein Netzwerk persistiert werden (z.~B. VPNs).
+    \item \textbf{Hijack Execution Flow} - Missbrauch der Art und Weise, wie Betriebssystem Programme ausführen (Ausführungsfluss). Durch umgeleitete Ausführungen kann schadhafter Code immer wieder geladen werden.
+    \item \textbf{Implant Internal Image} - Einsetzen von schadhaftem Code in Cloud- oder Container-Images.
+    \item \textbf{Modify Authentication Process} - Modifizieren von Authentifizierungsmechanismen- und -prozessen, um auf Benutzeranmeldeinformationen zuzugreifen.
+    \item \textbf{Office Application Startup} - Verwendung von Office-Vorlagenmakros oder Add-Ins, um schadhaften Code in Office-basierten Anwendungen zu persistieren.
+    \item \textbf{Power Settings} - Beeinträchtigen der Systemfunktionen in den Ruhezustand zu gehen, neu zu starten oder herunterzufahren, um zu verhindern, dass schadhafter Code gestoppt wird.
+    \item \textbf{Pre-OS Boot} - Nutzen von Pre-OS-Boot-Mechanismen, um während des Bootvorgangs schadhafte Firmware und verschiedene bösartige Startdienste vor dem Betriebssystem zu laden.
+    \item \textbf{Scheduled Task/Job} - Erstellen oder Modifizieren von geplanten Aufgaben, um schadhaften Code wiederholt auszuführen.
+    \item \textbf{Server Software Component} - Ausnutzen von legitimen, erweiterbaren Entwicklungsfunktionen von Servern, die ermöglichen Software oder Skripte zu schreiben und zu installieren.
+    \item \textbf{Traffic Signaling} - Verbergen von offenen Ports oder anderen bösartigen Funktionen. Ein magischer Wert oder eine Sequenz muss verwendet werden, um eine Reaktion auf dem System auszulösen, z.~B. das Öffnen eines Ports oder die Ausführung einer bösartigen Aufgabe.
+    \item \textbf{Valid Accounts} - Durch erbeutete Anmeldeinformationen bestehender Konten, können diese Wiederholt missbraucht werden, um den Zugriff aufrechtzuerhalten.
 \end{itemize}
 
 \subsection{Verbreitung}
+MITRE \cite{MITRELateralMovement} unterscheidet dabei zwischen folgenden Taktiken:
+\begin{itemize}
+    \item \textbf{Exploitation of Remote Services} - Ausnutzen eines Remote-Dienstes innerhalb eines Netzwerkes, um sich unerlaubten Zugang zu weiteren internen Systemen zu verschaffen. Dabei werden Software-Schwachstellen in Programmen und Betriebssystemen ausgenutzt.
+    \item \textbf{Internal Spearphishing} - Angreifer können sich mittels internem Spearphishing Zugang zu zusätzlichen Information verschaffen. Es handelt sich dabei um ein mehrstufiges Verfahren, bei dem z.~B. ein E-Mail-Konto eines Benutzers in Besitz genommen wird.
+    \item \textbf{Lateral Tool Transfer} - Übertragen von Tools oder anderen Dateien zwischen Systemen in einer kompromittierten Umgebung.
+    \item \textbf{Remove Service Session Hijacking} - Kontrolle über bereits bestehende Sitzungen in Remote-Diensten übernehmen.
+    \item \textbf{Remote Services} - Verwenden von gültigen Kontent, um sich bei einem Dienst anzumelden, der Remote-Verbindungen akzteptiert, z.~B. SSH.
+    \item \textbf{Replication Through Removable Media} - Wechselmedien können verwendet werden, um sich auch in getretten Netzwerken zu verbreiten. Dabei wird Malware auf das Wechselmedium gespielt und mittels Autorun-Funktion auf dem getrennten System ausgeführt.
+    \item \textbf{Software Deployment Tools} - Zugang zu Softwarebereitstellungssystemen von Drittanbietern zu verschaffen, um diese zur Verbreitung zu nutzen.
+    \item \textbf{Taint Shared Content} - Schadprogramme auf gemeinsam genutzten Speicherorten (Netlaufwerke, Code-Repositorien) in vertrauenswürdigen Dateien ablegen. Sobald ein Nutzer den freigegebenen Inhalt öffnet, kann so der Schadcode verbreitet werden.
+    \item \textbf{Use Alternate Authentication Material} - Verwenden von alternativem Authentifizierungsmaterial (Kennwort-Hashes, Kerberos-Tickets, Token, usw.), um sich weiter im System zu verbreiten.
+\end{itemize}
+
 \subsection{Exfiltration}
 \subsection{Beweise löschen}
 
