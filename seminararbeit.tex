@@ -51,19 +51,21 @@
 \end{IEEEkeywords}
 
 \section{Einführung}
-Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes Maß an Fachwissen und erhebliche Ressourcen verfügen, die es Ermöglichen mehrere Angriffsvektoren zu nutzen.
-Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
-Zu diesen Zielen gehören u.~a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
-Die geschätzten jährlichen Kosten von Cyberkriminalität sollen laut Statista im Jahr 2023 auf 8,15 Billionen US-Dollar belaufen und bis 2028 um 69,94\% auf 13.82 Billionen US-Dollar steigen \cite{Statista2023}.
-
+Laut Statista belaufen sich die geschätzten jährlichen Kosten von Cyberkriminalität auf 8,15 Billionen US-Dollar und steigen bis 2028 um 69,94\% auf 13,82 Billionen US-Dollar an \cite{Statista2023}.
+Dies macht deutlich, wie wichtig es ist, zu verstehen wie \acp{apt} agieren, um sich bestmöglich auf Angriffe dieser Art vorzubereiten.
 
 \subsection{Organisierte Kriminalität, Hacker und \aclp*{apt}}
-Abgrenzung von \ac{apt} zu anderen Formen der Cyberkriminalität ist in Abb.~\ref{fig.destinction} dargestellt.
+Bei der Cyberkriminalität wird zwischen verschiedenen Formen unterschieden, siehe Abb.~\ref{fig.destinction}.
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/Destinction between targeted attacks, activity by APTs, and cyber-espionage.png}}
     \caption{Unterscheidung zwischen gezielten Angriffen, Aktivitätes von \acp{apt} und Cyberspionage \protect\cite[S.~6]{Steffens2020}}
     \label{fig.destinction}
 \end{figure}
+Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes Maß an Fachwissen und erhebliche Ressourcen verfügen, die es Ermöglichen mehrere Angriffsvektoren zu nutzen.
+Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
+Zu diesen Zielen gehören u.~a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
+\acp{apt}
+
 \subsection{Solarwinds Compromise}
 
 \section{Vorgehensweise von \aclp{apt}}
@@ -74,7 +76,9 @@ Um sie besser zu verstehen, werden die verschiedenen Teile eines Anriffs in eine
     \caption{Killchain: Idealisiertes Modell der Stufen eines \ac{apt}-Angriffs \cite[S.~8]{Steffens2020}}
     \label{fig.killchain}
 \end{figure}
-Es gibt weitere Killchain-Modelle, u.~a. von Lockheed Martin \cite{LockheedMartin}, welche einfachheitshalber nicht weiter in betracht genommen wurden.
+Es gibt weitere Killchain-Modelle, u.~a. von Lockheed Martin \cite{LockheedMartin}, welche einfachheitshalber nicht weiter in betracht genommen werden.
+MITRE unterscheidet sogar noch detailierter zwischen den verwendeten Taktiken \cite{MITREEnterpriseTactics} .
+Im Folgenden werden die Schritte der \textit{Killchain} aus Abb.~\ref{fig.killchain} erklärt und Taktiken gelistet die durch \acp{apt} genutzt werden, um das Ziel des Schrittes zu erreichen.
 \subsection{Aufkärung}
 Das Ziel des ersten Schritts ist es nicht nur Information über das Ziel zu finden, sondern auch das Ziel festzulegen.
 Wie und warum Ziele ausgewählt werden lässt sich schwer bis nicht feststellen.
