@@ -182,7 +182,21 @@ MITRE \cite{MITRELateralMovement} unterscheidet dabei zwischen folgenden Taktike
 \end{itemize}
 
 \subsection{Exfiltration}
+?? \cite{MITREExfiltration}
+\begin{itemize}
+    \item \textbf{Automated Exfiltration} - Automatisches exfiltrieren von z.~B. sensiblen Dokumenten. Dafür wird diese Technik meist mit anderen Exfiltrationstechniken kombiniert \cite{MITREAutomatedExfiltration}.
+    \item \textbf{Data Transfer Size Limit} - Exfiltrieren von Daten in kleineren Paketen, um z.~B. zu vermeiden, dass Schwellenwerte für die Datenübertragung im Netzwerk nicht überschritten werden.
+    \item \textbf{Exfiltration Over Alternative Protocol} - Daten über andere Protokolle, als das der bestehenden Verbindung, exfiltrieren.
+    \item \textbf{Exfiltration Over C2 Channel} - Daten über das Protokol der bestehenden Verbindung exfiltrieren.
+    \item \textbf{Exfiltration Over Other Network Medium} - Nutzen von anderen Netwerkmedien, wie WiFi-Verbindungen, mobile Datenverbindungen oder Bluetooth, um Daten zu exfiltrieren.
+    \item \textbf{Exfiltration Over Physical Medium} - Stehlen von Daten mittels physischer Medien, z.~B. USB-Laufwerke oder Mobiltelefone.
+    \item \textbf{Exfiltration Over Web Services} - Verwenden von Webdiensten zur Exfiltration, z.~B. über Fileshare-Dienste.
+    \item \textbf{Scheduled Transfer} - Planen von Datenexfiltrationen, damit nur zu bestimmten Tageszeiten oder in bestimmten Zeitabständen. Diese Taktik wird u.~U. genutzt, um den Datenverkehr mit normalen Aktivitäten zu vermischen. Andere Taktiken werden meist mit dieser verbunden \cite{MITREScheduledTransfer}.
+    \item \textbf{Transfer Data to Cloud Account} - Übertragen von Daten, einschließlich Backups von Cloud-Umgebungen, auf ein anderes Cloud-Konto, um Exfiltrationserkennung zu umgehen.
+\end{itemize}
 \subsection{Beweise löschen}
+
+\section{Vorgehensweise im Solarwinds Compromise}
 
 \section{Verteidigung gegen \aclp{apt}}
 \subsection{Threat Hunting}
