@@ -22,6 +22,7 @@
 
 \begin{acronym}
     \acro{apt}[APT]{Advanced Persistent Threat}
+    \acro{bsi}[BSI]{Bundesamt für Sicherheit in der Informationstechnik}
 \end{acronym}
 
 
@@ -51,22 +52,28 @@
 \end{IEEEkeywords}
 
 \section{Einführung}
-Laut Statista belaufen sich die geschätzten jährlichen Kosten von Cyberkriminalität auf 8,15 Billionen US-Dollar und steigen bis 2028 um 69,94\% auf 13,82 Billionen US-Dollar an \cite{Statista2023}.
+\label{sec:introduction}
+Laut Statista belaufen sich die geschätzten jährlichen weltweiten Kosten von Cyberkriminalität auf 8,15 Billionen US-Dollar und steigen bis 2028 um 69,94\% auf 13,82 Billionen US-Dollar an \cite{Statista2023}.
+In Deutschland entstehen durch Cyberattacken Schäden in Höhe von 148 Milliarden Euro, was 72\% des gesamten Schadens etspricht, der durch Industriespionage, Sabotage und Datendiebstahl verursacht wird.
+Besonders im Zuge des russischen Angriffskrieg auf die Ukraine hat das \ac{bsi} viele Phänomene bezüglich Cyberkriminalität in Deutschland festgestellt \cite[S.~25]{BSI2023}.
+Das \ac{bsi} gibt an, das im Durchschnitt täglich 250.000 neue Varianten von Schadprogrammen bekannt werden \cite[S.~13]{BSI2023}.
 Dies macht deutlich, wie wichtig es ist, zu verstehen wie \acp{apt} agieren, um sich bestmöglich auf Angriffe dieser Art vorzubereiten.
 
 \subsection{Organisierte Kriminalität, Hacker und \aclp*{apt}}
+\label{sec:introduction:apt}
 Bei der Cyberkriminalität wird zwischen verschiedenen Formen unterschieden, siehe Abb.~\ref{fig.destinction}.
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/Destinction between targeted attacks, activity by APTs, and cyber-espionage.png}}
     \caption{Unterscheidung zwischen gezielten Angriffen, Aktivitätes von \acp{apt} und Cyberspionage \protect\cite[S.~6]{Steffens2020}}
     \label{fig.destinction}
 \end{figure}
+Das National Institute of Standards and Technology beschreibt \acp{apt} wiefolgt:
 Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes Maß an Fachwissen und erhebliche Ressourcen verfügen, die es Ermöglichen mehrere Angriffsvektoren zu nutzen.
 Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
 Zu diesen Zielen gehören u.~a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
-\acp{apt}
 
 \subsection{Solarwinds Compromise}
+\label{sec:introduction:solarwinds}
 
 \section{Vorgehensweise von \aclp{apt}}
 Die Techniken der \acp{apt} werden immer komplexer und vielfältiger und bestehen aus vielschichtigen und zeitaufwändigen Prozessen \cite[S.~7f]{Steffens2020}.
@@ -102,12 +109,11 @@ MITRE \cite{MITREReconnaissance} listet zehn Techniken auf, mit deren Hilfe Info
 Viele der Techniken werden kombiniert, um am Ende das eigentliche Ziel zu erreichen.
 Beispielsweise werden auf der Webseite des Ziels wichtigen Mitarbeitern gesucht, weitere Informationen über Social-Media gewonnen, um anschließend vertrauliche Informationen über das Ziel mittels Social-Engineering Taktiken zu gewinnen.
 
-?? Solarwinds Compromise
-
 \subsection{Auslieferung}
+\label{sec:proceeding:delivery}
 Die Auslieferung ist sehr verbunden mit der Aufklärung.
 Häufig wird für eine gewählte Auslieferungsstrategie entsprechende Aufklärung durchgeführt.
-??
+Wird beispielsweise der Angriffsvektor E-Mail ausgewählt, müssen vorab über diverse Aufklärungstaktiken Informationen gefunden werden, um zu gewährleisten, dass beispielsweise der Inhalt der Mail geöffnet wird.
 Vgl. zu diesem Abschnitt Steffens \cite[S.~10-13]{Steffens2020}.
 MITRE \cite{MITREInitialAccess} bezeichnet diesen Schritt als initialen Zugriff und unterscheidet zwischen zehn Techniken:
 \begin{itemize}
@@ -115,18 +121,22 @@ MITRE \cite{MITREInitialAccess} bezeichnet diesen Schritt als initialen Zugriff 
     \item \textbf{Drive-by Compromise} - Ziel wird aktiv zu bösartigen Nutzdaten auf einer kompromittierten Webseite gelockt, z.~B. Abgreifen von Anwendungszugriffstoken.
     \item \textbf{Exploit Public-Facing Application} - Ausnutzen einer Schwachstelle eines Systems.
     \item \textbf{External Remote Services} - Nutzen von unzureichend abgesicherten Remote-Diensten, wie VPNs.
-    \item \textbf{Harware Additions} - Einbringen neuer Hardwaer in ein System oder Netzwerk, z.~B. Wechseldatenträger.
+    \item \textbf{Harware Additions} - Einbringen neuer Hardware in ein System oder Netzwerk, z.~B. Wechseldatenträger.
     \item \textbf{Phishing} - Versenden von Phishing-Nachrichten, um einen Zugang zum System des Ziels zu erhalten.
     \item \textbf{Replication Through Removable Media} - Eindringen in abgetrennte Netzwerke, z.~B. mittels Wechselmedien in Kombination mit Autorun-Funktionen
     \item \textbf{Supply Chain Compromise} - Einschleusen von bösartigem Code durch Auslieferungsmechanismen von Anwendungen.
     \item \textbf{Trusted Relationship} - Ausnutzen von vertrauenswürdigen Dritten, um Zugang zu einem Netzwerk zu erhalten.
     \item \textbf{Valid Accounts} - Nutzen von Anmeldeinformationen bestehender Konten (VPNs, Outlook, Remote-Desktop, ...)
 \end{itemize}
-
-?? Solarwinds compromis supply chain compromise
+Viele Angriffe von \acp{apt} werden im nachhinein durch IT-Sicherheitsunternehmen beschrieben, jedoch ist es meist unmöglich herauszufinden, wie die Angreifer in das Netzwerk gelangt sind \cite[S.~14]{Steffens2020}.
+Wie in Abschnit~\ref{sec:introduction:apt} beschrieben, verfügen \acp{apt} über erhebliche Ressource und können desshalb über Wochen oder Monate hinweg den Angriff ausführen.
+In dieser Zeit können Angreifer ihre Spuren verwischen, bzw. viele Unternehmen halten Log-Dateien nicht entsprechend lange vor, um diese Auswerten zu können \cite[S.~15]{Steffens2020}.
 
 \subsection{Installation}
-??
+Ziel dieses Schritts ist es die Kontrolle über ein System im Netzwerk des Ziels zu bekommen.
+Der Schritt Auslieferung, aus Abschnitt~\ref{sec:proceeding:delivery}, und dieser Schritt sind in der Regel die größte Herausforderung und entscheidend für den Erfolg eines Angriffs.
+Im Zuge diese Schritts wird eine Verbindung zwischen dem kompromittierten System und einem \textit{Control Server} mittels sog. \textit{Backdoors} hergestellt, um den Zugriff zu tarnen.
+Vgl. zu diesem Abschnitt Steffens \cite[S.~15]{Steffens2020}
 MITRE \cite{MITREEnterpriseTactics} unterscheidet in diesem Punkt zwischen Taktiken für die Ausführung von schadhaftem Code, \textit{Execution}, und Taktiken, um den Zugriff auf längere Zeit zu sichern \cite{MITREEnterpriseTactics}.
 Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MITREExecution} folgende auf:
 \begin{itemize}
@@ -170,6 +180,10 @@ Dazu gehören nach MITRE \cite{MITREPersistence} folgende Taktiken:
     \item \textbf{Traffic Signaling} - Verbergen von offenen Ports oder anderen bösartigen Funktionen. Ein magischer Wert oder eine Sequenz muss verwendet werden, um eine Reaktion auf dem System auszulösen, z.~B. das Öffnen eines Ports oder die Ausführung einer bösartigen Aufgabe.
     \item \textbf{Valid Accounts} - Durch erbeutete Anmeldeinformationen bestehender Konten, können diese Wiederholt missbraucht werden, um den Zugriff aufrechtzuerhalten.
 \end{itemize}
+Neben MITRE beschreibt auch Steffens die Kombination mehrerer Techniken, um das Ziel zu erreichen \cite[S.~16]{Steffens2020}.
+Trotz der erheblichen Ressourcen die einer \ac{apt} zur Verfügung stehen, werden durch die wenigsten \textit{zero-day exploits} verwendet, denn meist sind genügend alte Sicherheitslücken vorhanden \cite[S.~15]{Statista2023}
+Bereits 2019 wurden 70\% der Angriffe über MS Office Produkte ausgeführt \cite{Statista2019}, was Steffens auf die Makro- und Skript-Funktionalität der Office-Produkte zurückführt \cite[S.~15]{Steffens2020}
+Trotz standardmäßige Blockierung von Skripten und Makros in Office-Produkten \cite{nicholasswhite2023}, schaffen es Angreifer die Benutzer dazu zu verleiten diese auszuführen.
 
 \subsection{Verbreitung}
 MITRE \cite{MITRELateralMovement} unterscheidet dabei zwischen folgenden Taktiken:
