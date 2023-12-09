@@ -31,7 +31,7 @@
 \end{acronym}
 
 
-\title{Methoden und Techniken von \aclp*{apt} am Beispiel des Solarwinds Compromise
+\title{Methoden und Techniken von \aclp*{apt} am Beispiel des SolarWinds Compromise
 }
 
 \author{\IEEEauthorblockN{Laurenz Stinner}
@@ -44,15 +44,15 @@
 \maketitle
 
 \begin{abstract}
-    Am des Solarwinds Compromise der \acs*{apt} 29 wird gezeigt, welche Methoden und Techniken durch \acsp*{apt} angewandt werden.
+    Am des SolarWinds Compromise der \acs*{apt} 29 wird gezeigt, welche Methoden und Techniken durch \acsp*{apt} angewandt werden.
     ?? Deshalb ist es für Organisationen und Firmen unerlässlich sich gegen böswillige Akteure zu schützen.
 
-    Paper soll anhand des Solarwinds Compromise der \ac{apt} 29 zeigen, wie diese Vorgehen, welche Techniken verwendet werden und welche Ziele APTs verfolgen.
+    Paper soll anhand des SolarWinds Compromise der \ac{apt} 29 zeigen, wie diese Vorgehen, welche Techniken verwendet werden und welche Ziele APTs verfolgen.
     ?? Im Schlussteil werden die wichtigsten Maßnahmen aufgezeigt oder eine raffinierte Maßnahme im Detail erklärt
 \end{abstract}
 
 \begin{IEEEkeywords}
-    \ac{apt}, Solarwinds, Cybersecurity, Machine Learning, Artificial Intelligence
+    \ac{apt}, SolarWinds Compromise, Cybersecurity, APT, Cloudsecurity, Machine Learning, Artificial Intelligence
 \end{IEEEkeywords}
 
 \section{Einführung}
@@ -78,16 +78,23 @@ Als \acp{apt} werden Gruppierungen oder Personen bezeichnet, die über ein hohes
 Zusätzlich verfolgen \acp{apt} ihre Ziele wiederholt über einen längeren Zeitraum, passen sich den Bemühungen der Verteitiger an und sind entschlossen die Ziele zu erreichen.
 Zu diesen Zielen gehören u.~a. das Exfiltrieren von Informationen, kritische Aspekte einer Organisation zu stören und sich im System des Ziels zu verbreiten und festzusetzen \cite[S.~B-1]{NIST2011}.
 
-\subsection{Solarwinds Compromise}
+\subsection{SolarWinds Compromise \& APT29}
 \label{sec:introduction:solarwinds}
-Der Solarwinds Compromise war eine Supply-Chain-Attacke der Gruppe \ac{apt}29 und wurde im Dezember 2020 entdeckt \cite{MITRESolarwindsCompromise}.
 
-\ac{cisa}\ac{fbi}\ac{odni}\ac{nsa}
-% Der Angriff war so weitreichend, dass das \ac{fbi}, \ac{cisa}, \ac{odni} und die \ac{nsa} eine gemeinsame Erklärung \cite{JointStatement}.
-% Der Angriff war so weitreichend, dass das \ac{fbi}, \ac{cisa}, \ac{odni} und die \ac{nsa} eine gemeinsame Erklärung \cite{Agency2021} zu dem Angriff herausgegeben haben.
+Der SolarWinds Compromise war eine Supply-Chain-Attacke der Gruppe \ac{apt}29 und wurde im Dezember 2020 entdeckt \cite{MITRESolarwindsCompromise}.
+Das betroffene Softwareprodukt war die Orion Platform des Unternehmens SolarWinds.
+Die Platform ermöglicht das Überwachen, Analysieren und Verwalten von Resourcen in Cloudumgebungen \cite{OrionPlatform}.
+Dieser Umfang an Fuktionen hat die Platform zu einem Ziel gemacht, da durch eine mögliche Schwachstelle sehr viele Systeme betroffen sind, was letztendlich eingetreten ist.
+Der Angriff war so weitreichend, dass das \ac{fbi}, \ac{cisa}, \ac{odni} und die \ac{nsa} eine gemeinsame Erklärung \cite{JointStatement} zu dem Angriff herausgegeben haben.
 Lt. diesem Bericht waren ca. 18.000 öffentliche und private Kunden der Software SolarWinds Orion betroffen.
 Eine erheblich kleinere Zahl der Kunden wurde durch nachfolgende Aktivitäten kompromittiert.
-DIe Erklärung enthält bereits die Indizien, dass die verantwortliche \ac{apt} russischen Ursprungs ist.
+Die Erklärung enthält bereits die Indizien, dass die verantwortliche \ac{apt} russischen Ursprungs ist.
+
+Die USA und das Vereinigte Königreich verantworten gemeinsam den russischen Auslandsgeheimdienst für den Angriff \cite{USUKSVR}.
+Die Gruppe erhält in späteren öffentlichen Erklärungen u.~A. die Beinamen APT29 und Cozy Bear \cite{CybersecurityAdvisoryAPT29}.
+
+\ac{apt}29 operiert seit mindestens 2008 und haben es primär auf Regierungsnetzwerke in Europa und NATO-Mitgliedsstaaten, Forschungsinstitute und Denkfabriken abgesehen \cite{MITREAPT29}.
+MITRE ordnet der \ac{apt}29 neben dem SolarWinds Compromise auch die Operation Ghost zu \cite{MITREAPT29}.
 
 \section{Vorgehensweise von \aclp{apt}}
 
@@ -288,7 +295,7 @@ Viele System löschen selbst die Spuren von Anreifern, z.~B. durch Logrotation.
 Zusätzlich wird dieser Schritt gemieden, da gute System das Löschen von Logs überwachen und Alarm schlagen.
 Vgl. dazu Steffens \cite[S.~19f]{Steffens2020}.
 
-\section{Vorgehensweise im Solarwinds Compromise}
+\section{Vorgehensweise im SolarWinds Compromise}
 
 \section{Verteidigung gegen \aclp{apt}}
 \subsection{Threat Hunting}
