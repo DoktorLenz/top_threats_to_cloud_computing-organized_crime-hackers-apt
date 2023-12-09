@@ -23,6 +23,11 @@
 \begin{acronym}
     \acro{apt}[APT]{Advanced Persistent Threat}
     \acro{bsi}[BSI]{Bundesamt für Sicherheit in der Informationstechnik}
+    \acro{opsec}[OpSec]{Operational Security}
+    \acro{fbi}[FBI]{Federal Bureau of Investigation}
+    \acro{cisa}[CISA]{Cybersecurity and Infrastruktur Security Agency}
+    \acro{odni}[ODNI]{Office of the Director of National Intelligence}
+    \acro{nsa}[NSA]{National Security Agency}
 \end{acronym}
 
 
@@ -39,7 +44,6 @@
 \maketitle
 
 \begin{abstract}
-
     Am des Solarwinds Compromise der \acs*{apt} 29 wird gezeigt, welche Methoden und Techniken durch \acsp*{apt} angewandt werden.
     ?? Deshalb ist es für Organisationen und Firmen unerlässlich sich gegen böswillige Akteure zu schützen.
 
@@ -53,6 +57,7 @@
 
 \section{Einführung}
 \label{sec:introduction}
+
 Laut Statista belaufen sich die geschätzten jährlichen weltweiten Kosten von Cyberkriminalität auf 8,15 Billionen US-Dollar und steigen bis 2028 um 69,94\% auf 13,82 Billionen US-Dollar an \cite{Statista2023}.
 In Deutschland entstehen durch Cyberattacken Schäden in Höhe von 148 Milliarden Euro, was 72\% des gesamten Schadens etspricht, der durch Industriespionage, Sabotage und Datendiebstahl verursacht wird.
 Besonders im Zuge des russischen Angriffskrieg auf die Ukraine hat das \ac{bsi} viele Phänomene bezüglich Cyberkriminalität in Deutschland festgestellt \cite[S.~25]{BSI2023}.
@@ -61,6 +66,7 @@ Dies macht deutlich, wie wichtig es ist, zu verstehen wie \acp{apt} agieren, um 
 
 \subsection{Organisierte Kriminalität, Hacker und \aclp*{apt}}
 \label{sec:introduction:apt}
+
 Bei der Cyberkriminalität wird zwischen verschiedenen Formen unterschieden, siehe Abb.~\ref{fig.destinction}.
 \begin{figure}[htbp]
     \centerline{\includegraphics[scale=0.8]{figures/Destinction between targeted attacks, activity by APTs, and cyber-espionage.png}}
@@ -74,8 +80,17 @@ Zu diesen Zielen gehören u.~a. das Exfiltrieren von Informationen, kritische As
 
 \subsection{Solarwinds Compromise}
 \label{sec:introduction:solarwinds}
+Der Solarwinds Compromise war eine Supply-Chain-Attacke der Gruppe \ac{apt}29 und wurde im Dezember 2020 entdeckt \cite{MITRESolarwindsCompromise}.
+
+\ac{cisa}\ac{fbi}\ac{odni}\ac{nsa}
+% Der Angriff war so weitreichend, dass das \ac{fbi}, \ac{cisa}, \ac{odni} und die \ac{nsa} eine gemeinsame Erklärung \cite{JointStatement}.
+% Der Angriff war so weitreichend, dass das \ac{fbi}, \ac{cisa}, \ac{odni} und die \ac{nsa} eine gemeinsame Erklärung \cite{Agency2021} zu dem Angriff herausgegeben haben.
+Lt. diesem Bericht waren ca. 18.000 öffentliche und private Kunden der Software SolarWinds Orion betroffen.
+Eine erheblich kleinere Zahl der Kunden wurde durch nachfolgende Aktivitäten kompromittiert.
+DIe Erklärung enthält bereits die Indizien, dass die verantwortliche \ac{apt} russischen Ursprungs ist.
 
 \section{Vorgehensweise von \aclp{apt}}
+
 Die Techniken der \acp{apt} werden immer komplexer und vielfältiger und bestehen aus vielschichtigen und zeitaufwändigen Prozessen \cite[S.~7f]{Steffens2020}.
 Um sie besser zu verstehen, werden die verschiedenen Teile eines Anriffs in eine \textit{killchain} sortiert \cite[S.~8]{Steffens2020}, siehe Abb.~\ref{fig.killchain}.
 \begin{figure}[htbp]
@@ -84,15 +99,20 @@ Um sie besser zu verstehen, werden die verschiedenen Teile eines Anriffs in eine
     \label{fig.killchain}
 \end{figure}
 Es gibt weitere Killchain-Modelle, u.~a. von Lockheed Martin \cite{LockheedMartin}, welche einfachheitshalber nicht weiter in betracht genommen werden.
-MITRE unterscheidet sogar noch detailierter zwischen den verwendeten Taktiken \cite{MITREEnterpriseTactics} .
+MITRE unterscheidet sogar noch detailierter zwischen den verwendeten Taktiken \cite{MITREEnterpriseTactics}.
+
 Im Folgenden werden die Schritte der \textit{Killchain} aus Abb.~\ref{fig.killchain} erklärt und Taktiken gelistet die durch \acp{apt} genutzt werden, um das Ziel des Schrittes zu erreichen.
+
 \subsection{Aufkärung}
+
 Das Ziel des ersten Schritts ist es nicht nur Information über das Ziel zu finden, sondern auch das Ziel festzulegen.
 Wie und warum Ziele ausgewählt werden lässt sich schwer bis nicht feststellen.
 Meist wird angenommen, dass \acp{apt} einen Auftrag durch Kunden bekommen, beispielsweise durch Geheimdienste, und danach ihre Ziele suchen.
 Nachdem das Ziel feststeht beginnt die weitere Aufklärung.
-Vgl. zu diesem Abschnitt Steffens \cite[S.~10-13]{Steffens2020}.
+Vgl. zu diesem Abschnitt Steffens \cite[S.~10ff]{Steffens2020}.
+
 In der Regel werden öffentlich zugängliche Informationen über ein Ziel gesammelt, um dessen Arbeitsweise besser zu verstehen und potenzielle Angriffsvektoren zu identifizieren \cite{Cole2013}.
+
 MITRE \cite{MITREReconnaissance} listet zehn Techniken auf, mit deren Hilfe Informationen über das Ziel gefunden werden können:
 \begin{itemize}
     \item \textbf{Active Scanning} - Direkte Interaktion mit der Infrastruktur des Ziels (IP-Adressblöcke finden, Schwachstellenscanns, Wortlistsuche)
@@ -111,10 +131,12 @@ Beispielsweise werden auf der Webseite des Ziels wichtigen Mitarbeitern gesucht,
 
 \subsection{Auslieferung}
 \label{sec:proceeding:delivery}
+
 Die Auslieferung ist sehr verbunden mit der Aufklärung.
 Häufig wird für eine gewählte Auslieferungsstrategie entsprechende Aufklärung durchgeführt.
 Wird beispielsweise der Angriffsvektor E-Mail ausgewählt, müssen vorab über diverse Aufklärungstaktiken Informationen gefunden werden, um zu gewährleisten, dass beispielsweise der Inhalt der Mail geöffnet wird.
-Vgl. zu diesem Abschnitt Steffens \cite[S.~10-13]{Steffens2020}.
+Vgl. zu diesem Abschnitt Steffens \cite[S.~10ff]{Steffens2020}.
+
 MITRE \cite{MITREInitialAccess} bezeichnet diesen Schritt als initialen Zugriff und unterscheidet zwischen zehn Techniken:
 \begin{itemize}
     \item \textbf{Content Injection} - Nutzen von bereits kompromittierten Datenübertragungskanälen.
@@ -133,10 +155,12 @@ Wie in Abschnit~\ref{sec:introduction:apt} beschrieben, verfügen \acp{apt} übe
 In dieser Zeit können Angreifer ihre Spuren verwischen, bzw. viele Unternehmen halten Log-Dateien nicht entsprechend lange vor, um diese Auswerten zu können \cite[S.~15]{Steffens2020}.
 
 \subsection{Installation}
+
 Ziel dieses Schritts ist es die Kontrolle über ein System im Netzwerk des Ziels zu bekommen.
 Der Schritt Auslieferung, aus Abschnitt~\ref{sec:proceeding:delivery}, und dieser Schritt sind in der Regel die größte Herausforderung und entscheidend für den Erfolg eines Angriffs.
 Im Zuge diese Schritts wird eine Verbindung zwischen dem kompromittierten System und einem \textit{Control Server} mittels sog. \textit{Backdoors} hergestellt, um den Zugriff zu tarnen.
-Vgl. zu diesem Abschnitt Steffens \cite[S.~15]{Steffens2020}
+Vgl. zu diesem Abschnitt Steffens \cite[S.~15]{Steffens2020}.
+
 MITRE \cite{MITREEnterpriseTactics} unterscheidet in diesem Punkt zwischen Taktiken für die Ausführung von schadhaftem Code, \textit{Execution}, und Taktiken, um den Zugriff auf längere Zeit zu sichern \cite{MITREEnterpriseTactics}.
 Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MITREExecution} folgende auf:
 \begin{itemize}
@@ -155,6 +179,7 @@ Zu den Taktiken für die Ausführung von schadhaftem Code listet MITRE \cite{MIT
     \item \textbf{User Execution} - Bösartiger Code wird hierbei durch einen Benutzer ausgeführt, der durch Social Engineering dazu gebracht wurde.
     \item \textbf{Windows Management Instrumentation} - Ausnutzen der Windows Management Insturmentation, um Befehle auszuführen.
 \end{itemize}
+
 Die größte Teil der genannten Taktiken ermöglichen es, schadhaften Code einmalig auszuführen, jedoch werden diese Prozesse nach neustart eines Systems beendet.
 Um den Zugang über Neustarts hinweg zu sichern, werden Taktiken zu persistierung eingesetz \cite{MITREPersistence}.
 Dazu gehören nach MITRE \cite{MITREPersistence} folgende Taktiken:
@@ -180,13 +205,40 @@ Dazu gehören nach MITRE \cite{MITREPersistence} folgende Taktiken:
     \item \textbf{Traffic Signaling} - Verbergen von offenen Ports oder anderen bösartigen Funktionen. Ein magischer Wert oder eine Sequenz muss verwendet werden, um eine Reaktion auf dem System auszulösen, z.~B. das Öffnen eines Ports oder die Ausführung einer bösartigen Aufgabe.
     \item \textbf{Valid Accounts} - Durch erbeutete Anmeldeinformationen bestehender Konten, können diese Wiederholt missbraucht werden, um den Zugriff aufrechtzuerhalten.
 \end{itemize}
+
 Neben MITRE beschreibt auch Steffens die Kombination mehrerer Techniken, um das Ziel zu erreichen \cite[S.~16]{Steffens2020}.
 Trotz der erheblichen Ressourcen die einer \ac{apt} zur Verfügung stehen, werden durch die wenigsten \textit{zero-day exploits} verwendet, denn meist sind genügend alte Sicherheitslücken vorhanden \cite[S.~15]{Statista2023}
 Bereits 2019 wurden 70\% der Angriffe über MS Office Produkte ausgeführt \cite{Statista2019}, was Steffens auf die Makro- und Skript-Funktionalität der Office-Produkte zurückführt \cite[S.~15]{Steffens2020}
 Trotz standardmäßige Blockierung von Skripten und Makros in Office-Produkten \cite{nicholasswhite2023}, schaffen es Angreifer die Benutzer dazu zu verleiten diese auszuführen.
 
 \subsection{Verbreitung}
-MITRE \cite{MITRELateralMovement} unterscheidet dabei zwischen folgenden Taktiken:
+
+Besonders dieser Schritt ist charakteristisch für \acp{apt}, denn andere Angreifer beschränken sich normalerweise auf ein System, um beispielsweise Zugangsdaten von Onlinebanking zu stehlen.
+Zunächst müssen auf dem kompromittierten System erweiterte Rechte ergattert werden.
+Hierzu werden Techniken zur \textit{privilege escalation} eingesetzt.
+Vgl. dazu Steffens \cite[S.~16f]{Steffens2020}.
+
+MITRE \cite{MITREPrivilegeEscalation} listet hierzu die folgenden Techniken:
+\begin{itemize}
+    \item \textbf{Abuse Elevation Control Mechanism} - Umgehen von Mechanismen zur Kontrolle der Berechtigungserweiterung, um sich höhere Berechtigungen zu verschaffen.
+    \item \textbf{Access Token Manipulation} - Verändern eines Zugriffstokens, sodass z.B.~ ein Prozess so aussieht, als gehöre er zu einem Benutzer mit erweiterten Berechtigungen.
+    \item \textbf{Account Manipulation} - Manipulieren von Kontent, um den Zugang zu erweitern.
+    \item \textbf{Boot or Logon Autostart Execution} - Systemeinstellungen so konfigurieren, dass Programme bei Systemstart oder Anmeldung automatisch mit erweiterten Berechtigungen gestartet werden.
+    \item \textbf{Boot or Logon Initialization Scripts} - Verwenden von Skripten, die beim Booten oder der Anmeldung eines Benutzers mit erweiterten Berechtigungen ausgeführt werden und somit in dessen Sicherheitskontext laufen.
+    \item \textbf{Create or Modify System Process} - Erstellen von Prozessen auf Systemebene die u.~U. mit Administrationsberechtigungen ausgeführt werden \cite{MITRECreateOrModifySystemProcess}.
+    \item \textbf{Domain Policy Modification} - Verändern von beispielsweise Domänen-Gruppenrichtlinien, um die Berechtigungen innerhalb der Domäne zu erweitern.
+    \item \textbf{Escape to Host} - Ausbrechen aus einem Container, um auf das zugrunde liegende Hostsystem zuzugreifen.
+    \item \textbf{Event Triggered Execution} - Mit Hilfe von Systemmechanismen Code bei bestimmten Ereignissen ausführen, der mit erweiterten Berechtigungen startet.
+    \item \textbf{Exploitation for Privilege Escalation} - Ausnutzen von Software-Schwachstellen, um die Berechtigungen zu erweitern.
+    \item \textbf{Hijack Execution Flow} - Missbrauchen der Art und Weise wie Betriebssysteme Programme ausführt. Dabei werden in den Ausführungsfluss schadhafter Code oder schadhafte Nutzdaten eingeschleust und diese u.~U. mit erweiterten Berechtigungen verarbeitet.
+    \item \textbf{Process Injection} - Hierbei wird Code in einen Prozess eingeschleust. Läuft der Prozess mit erweiterten Berechtigungen, wird auch der eingeschleuste Code mit diesen Berechtigungen ausgeführt.
+    \item \textbf{Scheduled Task/Job} - Ausnutzen der Aufgabenplanung eines Systems. Geplante Aufgaben können u.~U. mit erweiterten Berechtigungen ausgeführt werden.
+    \item \textbf{Valid Accounts} - Verschaffen von Anmeldeinformation bestehender Konten, die bereits erweiterte Berechtigungen haben.
+\end{itemize}
+
+Einige dieser Taktiken werden auch in anderen Schritten verwendet, wesshalb die klare Abtrennung zwischen den Schritten nicht ganz so leicht möglich ist.
+Nachdem Angreifer administrative Berechtigungen erlangt haben, wird das System z.~B. auf Anmeldeinformation zu anderen System durchsucht, um mit Hilfe dieser auf andere Systeme im Netzwerk zu gelangen \cite[S.~17]{Steffens2020}.
+MITRE \cite{MITRELateralMovement} kennt einige weitere Taktiken, um sich im Netzwerk zu verbreiten:
 \begin{itemize}
     \item \textbf{Exploitation of Remote Services} - Ausnutzen eines Remote-Dienstes innerhalb eines Netzwerkes, um sich unerlaubten Zugang zu weiteren internen Systemen zu verschaffen. Dabei werden Software-Schwachstellen in Programmen und Betriebssystemen ausgenutzt.
     \item \textbf{Internal Spearphishing} - Angreifer können sich mittels internem Spearphishing Zugang zu zusätzlichen Information verschaffen. Es handelt sich dabei um ein mehrstufiges Verfahren, bei dem z.~B. ein E-Mail-Konto eines Benutzers in Besitz genommen wird.
@@ -199,8 +251,19 @@ MITRE \cite{MITRELateralMovement} unterscheidet dabei zwischen folgenden Taktike
     \item \textbf{Use Alternate Authentication Material} - Verwenden von alternativem Authentifizierungsmaterial (Kennwort-Hashes, Kerberos-Tickets, Token, usw.), um sich weiter im System zu verbreiten.
 \end{itemize}
 
+In Abb.~\ref{fig.killchain} ist zu sehen, dass \textit{installation}, \textit{lateral movement} und \textit{exfiltration} als Kreislauf dargestellt werden.
+Dies erklärt Steffens damit, dass für Systeme die durch die Verbreitung zugreifbar werden der Zyklus erneut beginnt und die Schritte durchlaufen werden \cite[S.~18]{Steffens2020}.
+
 \subsection{Exfiltration}
-?? \cite{MITREExfiltration}
+
+Die Exfiltration von Dokumenten und Daten ist das eigentliche Zeil von \acp{apt}, die anderen Schritte sind nur ein Mittel zum Zweck.
+Im Groben geht es darum, die Dokumente und Daten an einen Server zu übermitteln der unter voller Kontrolle der \ac{apt} steht.
+Dafür greifen \acp{apt} auf Wortlisten zurück, um nach interessanten und relevaten Daten zu filtern.
+Dabei werden Dokumentnamen, Ordnernamen oder auch Dateiendungen berücksichtigt, die einen Hinweis auf wichtige Daten liefern.
+Einerseits wird dieses Vorgehen gewählt, damit der Aufwand des Durchsuchens der Dateien realisierbar bleibt, andererseits birgt das Exfiltrieren großer Datenmengen die Gefahr schneller entdeckt zu werden, da ungewöhnlich großer Netzwerkverkehr erzeugt wird.
+Vgl. dazu Steffens \cite[S.~18]{Steffens2020}.
+
+MITRE \cite{MITREExfiltration} listet dafür folgende Taktiken auf:
 \begin{itemize}
     \item \textbf{Automated Exfiltration} - Automatisches exfiltrieren von z.~B. sensiblen Dokumenten. Dafür wird diese Technik meist mit anderen Exfiltrationstechniken kombiniert \cite{MITREAutomatedExfiltration}.
     \item \textbf{Data Transfer Size Limit} - Exfiltrieren von Daten in kleineren Paketen, um z.~B. zu vermeiden, dass Schwellenwerte für die Datenübertragung im Netzwerk nicht überschritten werden.
@@ -212,7 +275,18 @@ MITRE \cite{MITRELateralMovement} unterscheidet dabei zwischen folgenden Taktike
     \item \textbf{Scheduled Transfer} - Planen von Datenexfiltrationen, damit nur zu bestimmten Tageszeiten oder in bestimmten Zeitabständen. Diese Taktik wird u.~U. genutzt, um den Datenverkehr mit normalen Aktivitäten zu vermischen. Andere Taktiken werden meist mit dieser verbunden \cite{MITREScheduledTransfer}.
     \item \textbf{Transfer Data to Cloud Account} - Übertragen von Daten, einschließlich Backups von Cloud-Umgebungen, auf ein anderes Cloud-Konto, um Exfiltrationserkennung zu umgehen.
 \end{itemize}
+
+In der Regel werden Dateien die exfiltriert werden sollen zuvor in passwortgeschützte und komprimierte Archive RAR gepackt, um das Opfer daran zu hindern, herauszufinden welche Dateien gestohlen wurden \cite[S.~19]{Steffens2020}.
+
 \subsection{Beweise löschen}
+Die sog. \ac{opsec} korreliert stark mit der Raffinesse von \acp{apt}.
+Besonders Gruppen die der NSA und CIA zugeordnet werden, sind stark im Thema \ac{opsec}.
+Dabei geht es darum genutzte Tools zu löschen, Logs richtig zu löschen und sonstige Spuren zu entfernen oder zu verwischen, um zu verhindern entdeckt zu werden.
+Viele \acp{apt} führen diesen Schritt nicht sorfältig durch.
+Dadurch lassen sich viele Spuren finden, aber nicht alle.
+Viele System löschen selbst die Spuren von Anreifern, z.~B. durch Logrotation.
+Zusätzlich wird dieser Schritt gemieden, da gute System das Löschen von Logs überwachen und Alarm schlagen.
+Vgl. dazu Steffens \cite[S.~19f]{Steffens2020}.
 
 \section{Vorgehensweise im Solarwinds Compromise}
 
