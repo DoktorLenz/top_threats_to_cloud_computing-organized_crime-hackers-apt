@@ -28,6 +28,8 @@
     \acro{cisa}[CISA]{Cybersecurity and Infrastruktur Security Agency}
     \acro{odni}[ODNI]{Office of the Director of National Intelligence}
     \acro{nsa}[NSA]{National Security Agency}
+    \acro{ttp}[TTP]{Taktik, Technik und Prozedur}
+    \acro{hsg}[HSG]{High-Level Szenario Graph}
 \end{acronym}
 
 
@@ -301,7 +303,7 @@ Der Angriff auf SolarWinds wurde als Supply-Chain-Attacke eingestuft, was bedeut
 Das US-amerikanische Cybersicherheitsunternehmen FireEye entdeckte als erstes den Angriff \cite{9579611}.
 
 Da keine festen Beweise gefunden wurden, wie \ac{apt}29 auf die internen System von SolarWinds gelangt sind, um in deren Software eine Backdoor einzubauen, wird im Folgenden nur die Kompromittierung der Kunden von SolarWinds analysiert.
-Dabei wird der Angriff auf eine nicht näher benannte us-amerikanische Denkfabrik genauer betrachtet, der durch das Unternehmen Volexity beobachtet wurde.
+?? Dabei wird der Angriff auf eine nicht näher benannte us-amerikanische Denkfabrik genauer betrachtet, der durch das Unternehmen Volexity beobachtet wurde.
 
 \subsection{Zeitlicher Ablauf}
 Der Begin der Attacke wird auf den 06.08.2019 datiert, dort wurde die erste bekannte Infrastruktur für die Attacke angelegt.
@@ -330,8 +332,55 @@ Sobald die Malware gestartet ist, baut sie eine Verbindung zu einem C2 (Command 
 
 \section{Verteidigung gegen \aclp{apt}}
 \subsection{Threat Hunting}
-\subsection{Visual Analytics with the MASFAD framework}
-\section{Fazit ??}
+Unter Theat Hunting versteht man die Kombination von Netwerkverkehr, Logs, Code und anderen mehrquelligen Daten, um den Host, Angriffspfad, den Angreifer und die Angrifssorganisation, die den Angriff gestartet hat, durch die verschiedenen Techniken und Methoden zu lokalisieren \cite{Chen2022}.
+Sicherheitsunternehmen haben in den letzten Jahren viele Forschungsberichte zu \ac{apt}-Angriffen veröffentlicht, jedoch meist nach den Angriffen \cite{Chen2022}.
+Durch die Entwicklung von Deep-Learning und traditionellen maschinellen Lern-Technologien, hat es fortschritte bezüglich Erkennung und Rückverfolgung von \ac{apt}-Angriffen basierend auf der Analyse von Provenance Graphen gegeben \cite{Chen2022}.
+\subsubsection{UNICORN}
+UNICORN ist ein Angriffserkennungssystem, welches versucht Angriffe auf mehrere Hosts gleichzeitig zu erkennen \cite{Han2020}.
+\begin{figure}[htbp]
+    \centerline{\includegraphics[scale=0.34]{figures/UNICORN.png}}
+    \caption{Schematischer Aufbau von UNICORN; Quelle: \cite{Han2020}}
+    \label{fig.unicorn}
+\end{figure}
+Als Eingabe nutzt UNICORN einen Provenence Graphen mit benannten Kanten, der dauerhaft aktualisiert wird.
+Daraus wird ein Histogramm konstruiert, siehe Abb.~\ref{fig.unicorn} Schritt 2, wobei jedes Histogrammelement eine eindeutige Substruktur des Graphen beschreibt.
+UNICORN reduziert dabei den Einfluss von Histogrammelementen, die in keinen kausalen Zusammenhang mit den aktuellen Ereignissen im System stehen.
+Aufgrund der Datenmenge wendet UNICORN eine ähnlichkeitserhaltende Hashing-Technik an und wandelt so das Histogramm in eine Graphenskizze um, siehe Abb.~\ref{fig.unicorn} Schritt 3.
+Daraus erstellt UNICORN ein normales Systemausführungsmodell und identifiziert abnormale Aktivitäten ohne Wissen über Angriffe.
+Dafür erfasst das Modell Verhaltensänderungen innerhalb einer einzelnen Ausführung, indem es Systemaktivitäten in verschiedenen Phasen der Ausführung clustert und Veränderungen erkennt.
+Das Modell wird dabei nicht dynamisch während der Laufzeit angepasst, desshalb ist es besser geeignet für lang laufende Systeme, die vorher analysiert werden können.
+Vgl. zu diesem Abschnitt Han et al. \cite{Han2020}.
+\subsubsection{HOLMES}
+HOLMES ist ein System, welches versucht aus Ereignisspuren auf effiziente Weise Alarme zu generieren.
+\begin{figure}
+    \centerline{\includegraphics[scale=0.27]{figures/HOLMES.png}}
+    \caption{Schematischer Aufbau von HOLMES; Quelle: \cite{Milajerdi2019}}
+    \label{fig.holmes}
+\end{figure}
+Zuerst sammelt HOLMES Audit-Protokolle von veschiedenen Systemen, die Ereignisse, von beispielsweise Dateiveränderungen, Prozessen und Netzwerkverbindungen, enthalten.
+Diese Daten werden in einem Provenance Graphen abgebildet, bei dem die Knoten des Graphen Subjekte (Prozesse) und Objekte (Dateien, Sockets) bilden und die Kanten die Abhängigkeiten mit Ereignisnamen zwischen diesen darstellen.
+Zur weiteren Verarbeitung der Daten ist eine Sammlung an Taktiken, Techniken und Prozeduren von \acp{apt} nötig.
+Diese Sammlung verbindet \acp{ttp} mit Ereignissen, Vorbedingungen und Schweregrad und Gruppiert diese in die Schritte der Killchain.
+Aus dem Graphen der Ereignisse und der Sammlung von \acp{ttp} wird ein \ac{hsg} erstellt.
+Bei diesem bilden die Knoten die \acp{ttp} ab, die Kanten den Informationsfluss zwischen den Elementen die zur \ac{ttp} zugeordnet sind.
+Dazu wird der Provenance Graph nach den Vorbedingungen der \acp{ttp} analysiert und wenn alle Vorbedingugen einer \ac{ttp} erfüllt sind, wird diesen in den \ac{hsg} hinzugefügt.
+Um den  \ac{hsg} zu bewerten, wird aus den \acp{ttp} der höchste Schweregrad einer \ac{ttp} der Aufklärungsphase gewählt.
+Vgl. zu diesem Abschnitt Milajerdi et al. \cite{Milajerdi2019}.
+\subsection{Unüberwachte Lernbasierte Analysetechniken}
+Das große Problem des UNICORN Systems ist, dass die Kanten des Provenence Graphen benannt sein müssen.
+
+
+\section{Fazit}
+\ac{apt} sind Aufgrund ihres Durchhaltevermögens eine besondere Gefahr für Unternehmen, Regierungen und sonstige Organisationen.
+Die große Menge an Taktiken die durch \acp{apt} eingesetz werden, zeigt, wie Aufwändig und Schwierig es ist \acp{apt} zu erkennen, gar zu bekämpfen.
+Das zeigt besonders der SolarWinds Compromise der sogar amerikanische Behörden bedroffen hat, die selbst in der Informationssicherheit tätig sind.
+Durch diverse Maßnahmen wie Mitarbeiterschulungen und gute Systemadministration können zwar Hürden geschaffen werden, jedoch keine \ac{apt} wirklich davon abgehalten werden, das System zu kompromittieren.
+Wird ein Weg blockiert, sucht sich eine finanzkräftige und personenstarke \ac{apt} den nächsten Weg und wiederholt alles, bis das Ziel erreicht ist.
+Neue Verteidigungstechniken wie HOLMES oder UNICORD das Sichern von Systemen, trotzdem sind Ressource, v.~a. Fachpersonal, notwendig, um Erkenntnisse dieser Methoden anzuwenden, was wiederum hohe Kosten für Unternehmen bedeutet.
+Daraus lässt sich ableiten, dass sich der Kampf gegen \acp{apt} schon bei der Finanzierung entscheiden kann.
+Hierbei werden Unternehmen immer eine Gradwanderung machen zwische den Kosten der Sicherheit und Kosten zur Behebung des angerichteten Schadens.
+
+
 
 \section*{Acknowledgment}
 
