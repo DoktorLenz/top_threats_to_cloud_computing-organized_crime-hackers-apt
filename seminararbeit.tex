@@ -30,6 +30,7 @@
     \acro{nsa}[NSA]{National Security Agency}
     \acro{ttp}[TTP]{Taktik, Technik und Prozedur}
     \acro{hsg}[HSG]{High-Level Szenario Graph}
+    \acro{masfad}[MASFAD]{Multi-agent System for Advanced Persistent Threat Detection}
 \end{acronym}
 
 
@@ -46,15 +47,14 @@
 \maketitle
 
 \begin{abstract}
-    Am des SolarWinds Compromise der \acs*{apt} 29 wird gezeigt, welche Methoden und Techniken durch \acsp*{apt} angewandt werden.
-    ?? Deshalb ist es für Organisationen und Firmen unerlässlich sich gegen böswillige Akteure zu schützen.
-
-    Paper soll anhand des SolarWinds Compromise der \ac{apt} 29 zeigen, wie diese Vorgehen, welche Techniken verwendet werden und welche Ziele APTs verfolgen.
-    ?? Im Schlussteil werden die wichtigsten Maßnahmen aufgezeigt oder eine raffinierte Maßnahme im Detail erklärt
+    \acp{apt} sind ein große Gefahr für jedes Netzwerk. Ihre besonderen Eigenschafen ermöglichen es \acp{apt} in nahezu jedes Netzwerk einzudringen.
+    In der Arbeit wird zunächst erklärt, wie sich \acp{apt} von anderen Formen der Cyberkriminalität unterscheiden und wie diese im allgemeinen Vorgehen.
+    Anschließend wird gezeigt wie die \ac{apt}29 im Fall des SolarWinds Compromise vorgegangen ist.
+    Zum Schluss werden Verteidigungsmaßnahmen wie Threat Hunting und das MASFAD Framework vorgestellt.
 \end{abstract}
 
 \begin{IEEEkeywords}
-    \ac{apt}, SolarWinds Compromise, Cybersecurity, APT, Cloudsecurity, Machine Learning, Artificial Intelligence
+    \ac{apt}, SolarWinds Compromise, Cybersecurity, APT, Cloudsecurity, Threat Hunting, Killchain, MASFAD
 \end{IEEEkeywords}
 
 \section{Einführung}
@@ -221,6 +221,7 @@ Bereits 2019 wurden 70\% der Angriffe über MS Office Produkte ausgeführt \cite
 Trotz standardmäßige Blockierung von Skripten und Makros in Office-Produkten \cite{nicholasswhite2023}, schaffen es Angreifer die Benutzer dazu zu verleiten diese auszuführen.
 
 \subsection{Verbreitung}
+\label{sec:proceeding:lateralmovement}
 
 Besonders dieser Schritt ist charakteristisch für \acp{apt}, denn andere Angreifer beschränken sich normalerweise auf ein System, um beispielsweise Zugangsdaten von Onlinebanking zu stehlen.
 Zunächst müssen auf dem kompromittierten System erweiterte Rechte ergattert werden.
@@ -303,7 +304,7 @@ Der Angriff auf SolarWinds wurde als Supply-Chain-Attacke eingestuft, was bedeut
 Das US-amerikanische Cybersicherheitsunternehmen FireEye entdeckte als erstes den Angriff \cite{9579611}.
 
 Da keine festen Beweise gefunden wurden, wie \ac{apt}29 auf die internen System von SolarWinds gelangt sind, um in deren Software eine Backdoor einzubauen, wird im Folgenden nur die Kompromittierung der Kunden von SolarWinds analysiert.
-?? Dabei wird der Angriff auf eine nicht näher benannte us-amerikanische Denkfabrik genauer betrachtet, der durch das Unternehmen Volexity beobachtet wurde.
+Dabei wird der Angriff auf eine nicht näher benannte us-amerikanische Denkfabrik genauer betrachtet, der durch das Unternehmen Volexity beobachtet wurde.
 
 \subsection{Zeitlicher Ablauf}
 Der Begin der Attacke wird auf den 06.08.2019 datiert, dort wurde die erste bekannte Infrastruktur für die Attacke angelegt.
@@ -311,6 +312,7 @@ Die erste Modifikation der SolarWinds Software geht auf den 26.10.2019 zurück, 
 Am 13.12.2020 wurde der SolarWinds Report von Fireeye veröffentlicht und somit der Angriff öffentlich bekannt.
 Ein Tag später wurde von SolarWinds ein Sicherheitshinweis zur Attacke herausgegeben.
 Am 15.12.2020 wurde die SUNBURST C2 (Command and Control) Domaine durch Microsoft beschlagnahmt \cite{Unit2020}.
+Im durch Veloxity beobachteten Angriff wurde im Juli 2020 die Malware in SolarWinds Orion ausgenutzt \cite{Cash2020}.
 
 \subsection{Aufklärung}
 Die Aufklärungsphase ist im SolarWinds Compromise etwas schwammig.
@@ -328,7 +330,24 @@ Neben einigen Bedingungen, prüft die Malware vor ihrem Start, ob Prozesse laufe
 Sobald die Malware gestartet ist, baut sie eine Verbindung zu einem C2 (Command and Control) Server auf, um grundlegende Informationen über das System zu übermitteln.
 Über den C2 Server können Befehle an die Malware übermittelt werden und ermöglichen eine vollen Zugriff auf das System \cite{Intelligence2020}.
 
+\subsection{Erneute Aufklärung}
+Im durch Veloxity beobachteten Angriff wurde nach dem Eindringen in das Netzwerk erneut Aufklärungsarbeit betrieben.
+Es wurden mittels Powershell Konfigurationseinstellung im Exchange der Organisation ausgelesen.
+Darunter befanden sich Informationen über Exchange-Nutzer und deren aktuellen Rollen.
+Vgl. zu diesem Abschnitt Cash et al. \cite{Cash2020}.
 
+\subsection{Verbreitung}
+Um sich im Netzwerk zu verbreiten erstellten die Angreifer mittels PowerShell neue geplante Aufgaben auf weiteren Systemen \cite{Cash2020}.
+
+\subsection{Exfiltration}
+Der Zugriff auf den Exchange Server der Denkfabrik ermöglichte es den Angreifern via PowerShell-Kommands Mailboxen zu extrahieren.
+Diese wurden in ein passwort-geschütztes Archiv verpackt, um durch eine HTTP-Anfrage exfiltriert werden zu können.
+Um Verteidigungsmechanismen zu umgehen wurde das Archiv als PNG Bilddatei über eine URL zur verfügung gestellt.
+Zusätzlich fügten die Angreifer ein eigenes Gerät als zulässige ID für die aktive Synchronisierung für eine Reihe an Postfachern hinzu, um weiterhin Zugriff auf die Postfächer zu erhalten.
+Vgl. zu diesem Abschnitt Cash et al. \cite{Cash2020}.
+
+\subsection{Beweise löschen}
+Nach der erfolgreichen Exfiltration der E-Mails, wurde die Export-Anfrage aus dem Exchange Server gelöscht.
 
 \section{Verteidigung gegen \aclp{apt}}
 \subsection{Threat Hunting}
@@ -337,11 +356,11 @@ Sicherheitsunternehmen haben in den letzten Jahren viele Forschungsberichte zu \
 Durch die Entwicklung von Deep-Learning und traditionellen maschinellen Lern-Technologien, hat es fortschritte bezüglich Erkennung und Rückverfolgung von \ac{apt}-Angriffen basierend auf der Analyse von Provenance Graphen gegeben \cite{Chen2022}.
 \subsubsection{UNICORN}
 UNICORN ist ein Angriffserkennungssystem, welches versucht Angriffe auf mehrere Hosts gleichzeitig zu erkennen \cite{Han2020}.
-\begin{figure}[htbp]
-    \centerline{\includegraphics[scale=0.34]{figures/UNICORN.png}}
+\begin{figure*}[htbp]
+    \centerline{\includegraphics[scale=0.6]{figures/UNICORN.png}}
     \caption{Schematischer Aufbau von UNICORN; Quelle: \cite{Han2020}}
     \label{fig.unicorn}
-\end{figure}
+\end{figure*}
 Als Eingabe nutzt UNICORN einen Provenence Graphen mit benannten Kanten, der dauerhaft aktualisiert wird.
 Daraus wird ein Histogramm konstruiert, siehe Abb.~\ref{fig.unicorn} Schritt 2, wobei jedes Histogrammelement eine eindeutige Substruktur des Graphen beschreibt.
 UNICORN reduziert dabei den Einfluss von Histogrammelementen, die in keinen kausalen Zusammenhang mit den aktuellen Ereignissen im System stehen.
@@ -352,11 +371,11 @@ Das Modell wird dabei nicht dynamisch während der Laufzeit angepasst, desshalb 
 Vgl. zu diesem Abschnitt Han et al. \cite{Han2020}.
 \subsubsection{HOLMES}
 HOLMES ist ein System, welches versucht aus Ereignisspuren auf effiziente Weise Alarme zu generieren.
-\begin{figure}
-    \centerline{\includegraphics[scale=0.27]{figures/HOLMES.png}}
+\begin{figure*}[htbp]
+    \centerline{\includegraphics[scale=0.5]{figures/HOLMES.png}}
     \caption{Schematischer Aufbau von HOLMES; Quelle: \cite{Milajerdi2019}}
     \label{fig.holmes}
-\end{figure}
+\end{figure*}
 Zuerst sammelt HOLMES Audit-Protokolle von veschiedenen Systemen, die Ereignisse, von beispielsweise Dateiveränderungen, Prozessen und Netzwerkverbindungen, enthalten.
 Diese Daten werden in einem Provenance Graphen abgebildet, bei dem die Knoten des Graphen Subjekte (Prozesse) und Objekte (Dateien, Sockets) bilden und die Kanten die Abhängigkeiten mit Ereignisnamen zwischen diesen darstellen.
 Zur weiteren Verarbeitung der Daten ist eine Sammlung an Taktiken, Techniken und Prozeduren von \acp{apt} nötig.
@@ -366,34 +385,26 @@ Bei diesem bilden die Knoten die \acp{ttp} ab, die Kanten den Informationsfluss 
 Dazu wird der Provenance Graph nach den Vorbedingungen der \acp{ttp} analysiert und wenn alle Vorbedingugen einer \ac{ttp} erfüllt sind, wird diesen in den \ac{hsg} hinzugefügt.
 Um den  \ac{hsg} zu bewerten, wird aus den \acp{ttp} der höchste Schweregrad einer \ac{ttp} der Aufklärungsphase gewählt.
 Vgl. zu diesem Abschnitt Milajerdi et al. \cite{Milajerdi2019}.
-\subsection{Unüberwachte Lernbasierte Analysetechniken}
-Das große Problem des UNICORN Systems ist, dass die Kanten des Provenence Graphen benannt sein müssen.
 
+\subsection{Visuelle Analytik mit dem MASFAD-Framework}
+Das \ac{masfad} bietet die Möglichkeit \acp{apt} mittels Anomalie- und verhaltensbasierter Analyse zu erkennen.
+Dabei fokusiert sich das Framework auf das erkennen von zuvor nicht erkannter oder unbekannter Bedrohungen.
+\ac{masfad} konzentriert sich stärker auf die von verschiedenen Sensoren im Netzwerk gesammelten Daten, als auf die Topologie des Netzwerks.
+Dabei steht der Analyst selbst im Mittelpunkt und dessen Fachwissen wird durch die vorgeschlagene Visualisierung von \ac{masfad} erweitert.
+Durch die verschiedenen Visualisierungsformen sollen dem Analysten die Daten verständlich aufbereitet werden und verhelfen korrekte Annahmen über Aktivitäten im Netzwerk zu treffen.
+Vgl. zu diesem Abschnitt Nikolov und Mees \cite{Nikolov2023}.
 
 \section{Fazit}
 \ac{apt} sind Aufgrund ihres Durchhaltevermögens eine besondere Gefahr für Unternehmen, Regierungen und sonstige Organisationen.
-Die große Menge an Taktiken die durch \acp{apt} eingesetz werden, zeigt, wie Aufwändig und Schwierig es ist \acp{apt} zu erkennen, gar zu bekämpfen.
+Die in der Arbeit gezeigte Vorgehensweise von \acp{apt} macht deutlich, wie Aufwändig und Schwierig es ist sie zu erkennen, gar zu bekämpfen.
 Das zeigt besonders der SolarWinds Compromise der sogar amerikanische Behörden bedroffen hat, die selbst in der Informationssicherheit tätig sind.
 Durch diverse Maßnahmen wie Mitarbeiterschulungen und gute Systemadministration können zwar Hürden geschaffen werden, jedoch keine \ac{apt} wirklich davon abgehalten werden, das System zu kompromittieren.
 Wird ein Weg blockiert, sucht sich eine finanzkräftige und personenstarke \ac{apt} den nächsten Weg und wiederholt alles, bis das Ziel erreicht ist.
-Neue Verteidigungstechniken wie HOLMES oder UNICORD das Sichern von Systemen, trotzdem sind Ressource, v.~a. Fachpersonal, notwendig, um Erkenntnisse dieser Methoden anzuwenden, was wiederum hohe Kosten für Unternehmen bedeutet.
-Daraus lässt sich ableiten, dass sich der Kampf gegen \acp{apt} schon bei der Finanzierung entscheiden kann.
-Hierbei werden Unternehmen immer eine Gradwanderung machen zwische den Kosten der Sicherheit und Kosten zur Behebung des angerichteten Schadens.
 
-
-
-\section*{Acknowledgment}
-
-\section*{References}
+Die vorgestellten Verteidigungstechniken wie HOLMES, UNICORN und das \ac{masfad}-Framework können bei der Sicherung von Systemen unterstützend wirken.
+Jedoch sind Ressource, v.~a. Fachpersonal, weiterhin notwendig, um die Erkenntnisse der Verteidigungstechniken anzuwenden.
 
 \balance
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEexample}
-
-
-
-\vspace{12pt}
-\color{red}
-IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
-
 \end{document}
